@@ -1,6 +1,6 @@
 # Phantombuster Script Template with Vite + TypeScript
 
-Template for creating a custom Phantombuster script with a fully customized environment.
+Template for creating a custom Phantombuster script with a fully equipped TypeScript environment.
 
 You need a Phantombuster account to deploy your script.
 
@@ -29,8 +29,19 @@ pnpm dev
 
 Open a second terminal and run the following command to start the script:
 ```bash
-pnpm script --my-argument="some value"
+pnpm script --something="some value"
 ```
+
+### Implement your script
+
+You can quickly get started by editing the `src/my-script.ts` sample file.
+
+> [!NOTE]
+> This file is only an example.
+>
+> If your script is somewhat complex, you can also create more files in the `src` directory, and use them in `src/index.ts`.
+>
+> It's TypeScript, after all!
 
 ## Usage
 
@@ -96,7 +107,6 @@ Now, you can run your script with the following command:
 ```bash
 pnpm script --search="some value"
 ```
-
 
 ## License
 
