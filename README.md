@@ -12,6 +12,7 @@ You need a Phantombuster account to deploy your script.
 * 🤝 Supports [conventional commits](https://www.conventionalcommits.org/)
 * 🚀 Deploy on Phantombuster with just one command
 * ♾️ GitHub Actions continuous deployment to Phantombuster
+* ✋ Validate your arguments with [superstruct](hhttps://docs.superstructjs.org/)
 
 ## Get started
 
@@ -28,7 +29,7 @@ pnpm dev
 
 Open a second terminal and run the following command to start the script:
 ```bash
-pnpm script
+pnpm script --my-argument="some value"
 ```
 
 ## Usage
@@ -45,7 +46,7 @@ The template contains the following `pnpm` scripts:
 * `test:coverage` - Run all tests with code coverage report
 * `prepare` - Script for setting up husky hooks
 
-## Phantombuster directives
+### Phantombuster directives
 
 You can change the Phantombuster script directives in the `package.json` under the `phantomBuster` key:
 * `image` (required): the Phantombuster image to use (ex: `web-node:v3`)
@@ -54,7 +55,7 @@ You can change the Phantombuster script directives in the `package.json` under t
 
 The directives will be appended automatically at the start of the main script uploaded to Phantombuster.
 
-## Deployment
+### Deployment
 
 Create a new Github Actions repository secret named `PHANTOM_BUSTER_API_KEY` containing your Phantombuster API key.
 Use this documentation to learn [how to create an API key](https://hub.phantombuster.com/docs/api#how-to-find-my-api-key).
@@ -63,6 +64,39 @@ The deployment will be done automatically when you or merge your code to the `ma
 
 If you want to deploy from your local environment, you must create a file `phantombuster.cson` at the root of the project.
 Follow the [Phantombuster SDK documentation](https://hub.phantombuster.com/docs/sdk#setup) to learn how to create this file.
+
+### Validation
+
+You can validate your script arguments thanks to [superstruct](https://docs.superstructjs.org/).
+
+To start validating, create a typescript file that defines your arguments schema:
+```ts
+import { string, type } from 'superstruct'
+
+export const MyScriptArguments = type({
+  search: string(),
+})
+```
+
+In `src/index.ts`, add this at the start of the root function:
+```ts
+// ...
+;(async () => {
+  const [err, args] = validate(buster.argument, MyScriptArguments)
+  if (err) {
+    console.error('Argument validation failed', err)
+    process.exit(1)
+  }
+
+  // ...
+})()
+```
+
+Now, you can run your script with the following command:
+```bash
+pnpm script --search="some value"
+```
+
 
 ## License
 
