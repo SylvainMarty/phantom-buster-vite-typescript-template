@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite build --watch",
     "script": "node dist/main.cjs",
+    "script:web-node:v3": "docker run --rm -w /app -v $PWD:/app $(docker build -t web-node:v3 -q .) npm run script --",
     "build": "tsc && vite build && sh build-cleanup.sh",
     "lint": "eslint . --fix",
     "test": "vitest --run",
