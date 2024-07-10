@@ -12,14 +12,14 @@ jobs:
   check-secrets:
     runs-on: ubuntu-latest
     outputs:
-      is_available: ${{ steps.check.outputs.test }}
+      is_available: ${{ steps.check.outputs.is_available }}
     steps:
       - id: check
         run: echo "is_available=${{ secrets.PHANTOM_BUSTER_API_KEY != '' }}" >> "$GITHUB_OUTPUT"
   deploy:
     name: Deploy
     needs: check-secrets
-    if: ${{ needs.check-secrets.outputs.is_available == 'true' }}
+    if: needs.check-secrets.outputs.is_available == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
