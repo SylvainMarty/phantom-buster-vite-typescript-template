@@ -1,5 +1,11 @@
+const parseArguments = require('./parse-arguments')
+
 class Buster {
   constructor() {}
+
+  get argument() {
+    return parseArguments()
+  }
 
   download(url, saveAs, headers) {}
   save(url, saveAs, headers) {}

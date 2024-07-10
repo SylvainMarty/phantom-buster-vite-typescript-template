@@ -54,6 +54,9 @@ importers:
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.14.9)
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
 
 packages:
 
