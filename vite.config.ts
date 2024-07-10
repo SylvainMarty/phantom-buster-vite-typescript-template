@@ -10,6 +10,7 @@ export default defineConfig({
   },
   build: {
     target: 'es2021', // web-node:v3 uses node v16.x
+    minify: false,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es'],
@@ -26,7 +27,7 @@ export default defineConfig({
         `"phantom image: ${packageJson.phantomBuster?.image}"`,
         packageJson.phantomBuster?.flags ? `"phantom flags: ${packageJson.phantomBuster?.flags}"` : null,
         packageJson.phantomBuster?.dependencies ? `"phantom dependencies: ${packageJson.phantomBuster?.dependencies}"` : null,
-      ].filter((directive) => !!directive).join('\n')}\n`,
+      ].filter((directive) => !!directive).join('\n')}\n"EMPTY LINE"\n`,
     ),
   ],
   test: {},

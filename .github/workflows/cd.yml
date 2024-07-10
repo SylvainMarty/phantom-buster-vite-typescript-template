@@ -18,7 +18,6 @@ jobs:
         with:
           version: 9
           run_install: true
-      - run: pnpm build
       - name: Extract script name from package.json
         uses: sergeysova/jq-action@v2
         id: scriptName
@@ -27,10 +26,16 @@ jobs:
       - name: Create phantombuster.cson
         run: |
           echo "[
-            name: '${{ steps.scriptName.outputs.value }}'
+            name: 'phantom-buster-scripts'
             apiKey: '$(echo ${{ secrets.PHANTOM_BUSTER_API_KEY }} | sed 's/./& /g' | sed 's/ //g')'
             scripts:
-              'main.js': 'dist/main.js'
+              '${{ steps.scriptName.outputs.value }}.js': 'dist/main.js'
           ]" > phantombuster.cson
-          cat phantombuster.cson
-      - run: npx phantombuster-sdk --yes
+      - name: Deploy
+        run: |
+          pnpm run deploy &
+          DEPLOY_PID=$!
+          pnpm build
+          sleep 4
+          kill $DEPLOY_PID
+          echo "Deployment complete"
