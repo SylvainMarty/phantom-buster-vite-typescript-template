@@ -68,13 +68,24 @@ The directives will be appended automatically at the start of the main script up
 
 ### Deployment
 
+> [!IMPORTANT]
+> You must rename the property `name` in the `package.json` to the name of your script.
+>
+> It will be displayed in Phantombuster UI.
+
 Create a new Github Actions repository secret named `PHANTOM_BUSTER_API_KEY` containing your Phantombuster API key.
 Use this documentation to learn [how to create an API key](https://hub.phantombuster.com/docs/api#how-to-find-my-api-key).
 
 The deployment will be done automatically when you or merge your code to the `main` branch.
 
+#### Local deployment
 If you want to deploy from your local environment, you must create a file `phantombuster.cson` at the root of the project.
 Follow the [Phantombuster SDK documentation](https://hub.phantombuster.com/docs/sdk#setup) to learn how to create this file.
+
+You can run the following command to deploy your script from your local environment:
+```bash
+pnpm run deploy
+```
 
 ### Validation
 
