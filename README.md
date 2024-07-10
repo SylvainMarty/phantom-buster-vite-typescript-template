@@ -31,7 +31,6 @@ Open a second terminal and run the following command to start the script:
 pnpm script
 ```
 
-
 ## Usage
 
 The template contains the following `pnpm` scripts:

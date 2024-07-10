@@ -1,6 +1,6 @@
 {
   "name": "phantom-buster-allrecipes",
-  "type": "commonjs",
+  "type": "module",
   "version": "0.0.0",
   "main": "./dist/main.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "vite build --watch",
-    "script": "node dist/main.js",
+    "script": "node dist/main.cjs",
     "build": "tsc && vite build && sh build-cleanup.sh",
     "lint": "eslint . --fix",
     "test": "vitest --run",

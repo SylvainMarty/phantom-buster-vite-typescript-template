@@ -20,7 +20,9 @@ class Buster {
   getAgentObject(agentId) {}
   setGlobalObject(object) {}
   getGlobalObject() {}
-  setResultObject(object) {}
+  setResultObject(object) {
+    console.log('resultObject', object)
+  }
 }
 
 module.exports = Buster

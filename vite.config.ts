@@ -13,7 +13,7 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      formats: ['es'],
+      formats: ['es', 'cjs'],
       name: packageJson.name,
       fileName: 'main',
     },
