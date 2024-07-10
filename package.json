@@ -1,5 +1,5 @@
 {
-  "name": "phantom-buster",
+  "name": "phantom-buster-allrecipes",
   "type": "module",
   "version": "0.0.0",
   "main": "./dist/main.js",

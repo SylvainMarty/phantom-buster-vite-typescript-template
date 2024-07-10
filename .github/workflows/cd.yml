@@ -1,0 +1,36 @@
+name: Phantombuster CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: true
+      - run: pnpm build
+      - name: Extract script name from package.json
+        uses: sergeysova/jq-action@v2
+        id: scriptName
+        with:
+          cmd: 'jq .name package.json -r'
+      - name: Create phantombuster.cson
+        run: |
+          echo "[
+            name: '${{ steps.scriptName.outputs.value }}'
+            apiKey: '$(echo ${{ secrets.PHANTOM_BUSTER_API_KEY }} | sed 's/./& /g' | sed 's/ //g')'
+            scripts:
+              'main.js': 'dist/main.js'
+          ]" > phantombuster.cson
+          cat phantombuster.cson
+      - run: npx phantombuster-sdk --yes
