@@ -20,6 +20,18 @@ You need a Phantombuster account to deploy your script.
 
 This is a template repo. Click the green [Use this template](https://github.com/SylvainMarty/phantombuster-vite-typescript-template/generate) button to get started.
 
+### Requirements
+
+* Node.js 22.x (you can use [nvm](https://github.com/nvm-sh/nvm) to manage Node versions)
+* pnpm (`npm install -g pnpm`)
+* Docker (optional, only needed if you want to test in a similar Phantombuster web-node agent environment)
+
+## Install dependencies
+
+```bash
+pnpm install
+```
+
 ### Run locally
 
 Open one terminal and Run the following command to start the development watcher:
@@ -30,6 +42,11 @@ pnpm dev
 Open a second terminal and run the following command to start the script:
 ```bash
 pnpm script --something="some value"
+```
+
+Or run the following command to start the script in a Docker container simulating a Phantombuster web-node:v3 agent:
+```bash
+pnpm script:web-node:v3 --something="some value"
 ```
 
 ### Implement your script
@@ -48,7 +65,8 @@ You can quickly get started by editing the `src/my-script.ts` sample file.
 The template contains the following `pnpm` scripts:
 
 * `dev` - Start the file watcher (will recompile the code on source file change)
-* `script` - Start the script
+* `script` - Start the script locally
+* `script:web-node:v3` - Start the script in a Docker container simulating a Phantombuster web-node:v3 agent
 * `build` - Build for production
 * `deploy` - Deploy on Phantombuster (see the **Deployment** section below)
 * `lint` - Checks your code for any linting errors
