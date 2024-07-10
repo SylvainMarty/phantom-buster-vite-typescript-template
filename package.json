@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "phantombuster": "link:phantombuster",
-    "puppeteer": "15.3.0"
+    "puppeteer": "15.3.0",
+    "superstruct": "^2.0.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.2",

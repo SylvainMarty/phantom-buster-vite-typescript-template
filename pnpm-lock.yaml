@@ -14,6 +14,9 @@ importers:
       puppeteer:
         specifier: 15.3.0
         version: 15.3.0
+      superstruct:
+        specifier: ^2.0.2
+        version: 2.0.2
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.21.2
@@ -2308,6 +2311,10 @@ packages:
 
   strip-literal@2.0.0:
     resolution: {integrity: sha512-f9vHgsCWBq2ugHAkGMiiYY+AYG0D/cbloKKg0nhaaaSNsujdGIpVXCNsrJpCKr5M0f4aI31mr13UjY6GAuXCKA==}
+
+  superstruct@2.0.2:
+    resolution: {integrity: sha512-uV+TFRZdXsqXTL2pRvujROjdZQ4RAlBUS5BTh9IGm+jTqQntYThciG/qu57Gs69yjnVUSqdxF9YLmSnpupBW9A==}
+    engines: {node: '>=14.0.0'}
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -4964,6 +4971,8 @@ snapshots:
   strip-literal@2.0.0:
     dependencies:
       js-tokens: 8.0.3
+
+  superstruct@2.0.2: {}
 
   supports-color@5.5.0:
     dependencies:
