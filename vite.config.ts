@@ -16,6 +16,9 @@ export default defineConfig({
       name: packageJson.name,
       fileName: 'main',
     },
+    rollupOptions: {
+      external: ['puppeteer', 'phantombuster'],
+    },
   },
   plugins: [
     banner2(

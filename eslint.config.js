@@ -7,6 +7,7 @@ export default antfu(
       '.github',
       'dist',
       'node_modules',
+      'phantombuster',
     ],
   },
   {
@@ -15,6 +16,8 @@ export default antfu(
       'style/arrow-parens': ['error', 'always'],
       'curly': ['error', 'all'],
       'antfu/consistent-list-newline': 'off',
+      'no-console': 'off',
+      'node/prefer-global/process': 'off',
     },
   },
   {
