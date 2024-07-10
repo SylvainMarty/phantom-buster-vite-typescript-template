@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import banner2 from 'rollup-plugin-banner2'
 import packageJson from './package.json'
 
 export default defineConfig({
@@ -16,5 +17,14 @@ export default defineConfig({
       fileName: 'main',
     },
   },
+  plugins: [
+    banner2(
+      () => `${[
+        `"phantom image: ${packageJson.phantomBuster?.image}"`,
+        packageJson.phantomBuster?.flags ? `"phantom flags: ${packageJson.phantomBuster?.flags}"` : null,
+        packageJson.phantomBuster?.dependencies ? `"phantom dependencies: ${packageJson.phantomBuster?.dependencies}"` : null,
+      ].filter((directive) => !!directive).join('\n')}\n`,
+    ),
+  ],
   test: {},
 })
