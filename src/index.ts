@@ -1,6 +1,7 @@
 /* eslint-disable ts/no-var-requires */
 /* eslint-disable ts/no-require-imports */
-import { validate } from 'superstruct'
+import { create } from 'superstruct'
+import type { MyScriptArgumentsType } from './my-script'
 import { MyScriptArguments, myScript } from './my-script'
 
 // Keep these require() here for Phantombuster agent compatibility
@@ -11,8 +12,10 @@ const buster = new Buster()
 
 ;(async () => {
   // Automatically validate arguments
-  const [err, args] = validate(buster.argument, MyScriptArguments)
-  if (err) {
+  let args: MyScriptArgumentsType
+  try {
+    args = create(buster.argument, MyScriptArguments)
+  } catch (err) {
     console.error('Argument validation failed', err)
     process.exit(1)
   }
